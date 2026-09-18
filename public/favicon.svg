@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <!-- Sfondo Finestra Terminale (Nero/Antracite) -->
+  <rect x="5" y="5" width="90" height="90" rx="20" fill="#1E1E24" stroke="#2D2D35" stroke-width="2" />
+
+  <!-- Prompt (>) in Giallo -->
+  <path d="M 18 44 L 24 50 L 18 56"
+        stroke="#FFD166"
+        stroke-width="3.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none" />
+
+  <!-- Testo del comando: fg run -->
+  <text x="30" y="56"
+        font-family="Consolas, Fira Code, Monaco, 'Courier New', monospace"
+        font-weight="bold"
+        font-size="16"
+        fill="#FFD166"
+        letter-spacing="0.5">fg run</text>
+</svg>
