@@ -5,7 +5,14 @@ import { Component } from '@angular/core';
 /*  Modelli                                                                    */
 /* -------------------------------------------------------------------------- */
 
-export type IconName = 'phone' | 'mail' | 'map' | 'whatsapp' | 'github' | 'linkedin';
+export type IconName =
+  | 'phone'
+  | 'mail'
+  | 'map'
+  | 'whatsapp'
+  | 'telegram'
+  | 'github'
+  | 'linkedin';
 
 export interface ContactLink {
   /** Etichetta breve mostrata nella card. */
@@ -83,8 +90,11 @@ const LINKEDIN_URL = 'https://www.linkedin.com/in/francescogrossi92/';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  /** Toggle della battuta nascosta nella card "Palestra". */
-  gymTruthRevealed = false;
+  /**
+   * true solo MENTRE l'utente sta interagendo con la card "Palestra"
+   * (hover del mouse, dito premuto, Invio/Spazio tenuto sul badge).
+   */
+  isRevealed = false;
 
   /** Fallback alle iniziali se `public/profile.jpg` non è presente. */
   photoAvailable = true;
@@ -152,8 +162,15 @@ export class AppComponent {
       external: true,
     },
     {
+      label: 'Telegram',
+      value: '@ginogipsy',
+      href: 'https://t.me/ginogipsy',
+      icon: 'telegram',
+      external: true,
+    },
+    {
       label: 'GitHub',
-      value: 'ginogipsy',
+      value: '@ginogipsy',
       href: 'https://github.com/ginogipsy',
       icon: 'github',
       external: true,
@@ -166,6 +183,11 @@ export class AppComponent {
       external: true,
     },
   ];
+
+  /* Scorciatoie per la topbar e la CTA finale: evitano indici magici nel template. */
+  readonly ctaPhone = this.contactByIcon('phone');
+  readonly ctaEmail = this.contactByIcon('mail');
+  readonly ctaWhatsapp = this.contactByIcon('whatsapp');
 
   readonly experiences: Experience[] = [
     {
@@ -357,9 +379,62 @@ export class AppComponent {
     },
   ];
 
-  /** Rivela (o nasconde di nuovo) la verità sulla palestra. */
-  toggleGymTruth(): void {
-    this.gymTruthRevealed = !this.gymTruthRevealed;
+  private contactByIcon(icon: IconName): ContactLink {
+    const contact = this.contacts.find((item) => item.icon === icon);
+
+    if (!contact) {
+      throw new Error(`Contatto mancante per l'icona "${icon}"`);
+    }
+
+    return contact;
+  }
+
+  /* ---------------------------------------------------------------------- */
+  /*  Card Palestra: la verità è visibile SOLO durante l'interazione.        */
+  /*  Tutto passa da `isRevealed`, così non resta appeso nessuno stato       */
+  /*  :hover / :focus sticky dopo un tap su touch.                          */
+  /* ---------------------------------------------------------------------- */
+
+  /** Mouse: il testo compare all'ingresso del cursore. */
+  onPointerEnter(event: PointerEvent): void {
+    if (event.pointerType === 'mouse') {
+      this.isRevealed = true;
+    }
+  }
+
+  /** Uscita del cursore (o fine della cattura implicita su touch): si richiude. */
+  onPointerLeave(): void {
+    this.isRevealed = false;
+  }
+
+  /** Touch / pen: visibile solo finché il dito resta premuto. */
+  onPressStart(event: PointerEvent): void {
+    if (event.pointerType !== 'mouse') {
+      this.isRevealed = true;
+    }
+  }
+
+  /**
+   * Dito sollevato (`pointerup`) o gesto interrotto dallo scroll
+   * (`pointercancel`): si richiude subito. Con il mouse non fa nulla,
+   * altrimenti il click nasconderebbe il testo restando in hover.
+   */
+  onPressEnd(event: PointerEvent): void {
+    if (event.pointerType !== 'mouse') {
+      this.isRevealed = false;
+    }
+  }
+
+  /** Tastiera: press-and-hold su Invio / Spazio, stesso modello del touch. */
+  onKeyPressStart(event: KeyboardEvent): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.isRevealed = true;
+    }
+  }
+
+  onKeyPressEnd(): void {
+    this.isRevealed = false;
   }
 
   onPhotoError(): void {
