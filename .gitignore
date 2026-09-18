@@ -1,0 +1,49 @@
+# --- Build & Output ---------------------------------------------------------
+/dist
+/tmp
+/out-tsc
+/bazel-out
+/coverage
+/.angular/cache
+
+# --- Node -------------------------------------------------------------------
+/node_modules
+npm-debug.log
+yarn-error.log
+yarn-debug.log*
+lerna-debug.log*
+
+# --- Credentials & Secrets (NEVER COMMIT) -----------------------------------
+.env
+.env.local
+.env.*.local
+*.pem
+*.p12
+*.pfx
+*.key
+
+# --- IDE: VS Code -----------------------------------------------------------
+.vscode/
+.history/
+
+# --- IDE: IntelliJ / WebStorm -----------------------------------------------
+.idea/
+*.iml
+*.iws
+
+# --- OS Files ---------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+# --- Miscellaneous ----------------------------------------------------------
+.sass-cache/
+/connect.lock
+/libpeerconnection.log
+testem.log
+/typings
+__screenshots__/

@@ -1,0 +1,420 @@
+<!-- ======================================================================== -->
+<!--  Icone SVG riutilizzabili                                                -->
+<!-- ======================================================================== -->
+<ng-template #icon let-name>
+  @switch (name) {
+    @case ('phone') {
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
+      </svg>
+    }
+    @case ('mail') {
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" />
+        <path d="m22 6-10 7L2 6" />
+      </svg>
+    }
+    @case ('map') {
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z" />
+        <circle cx="12" cy="10" r="3" />
+      </svg>
+    }
+    @case ('whatsapp') {
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.18-.3-.02-.46.13-.6.13-.14.34-.35.52-.53.17-.17.23-.3.34-.5.12-.2.06-.37-.03-.52-.08-.14-.66-1.6-.9-2.19-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.03 1.02-1.03 2.48 0 1.46 1.06 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.7.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.42.25-.69.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35M12.05 21.78h-.01a9.87 9.87 0 0 1-5.03-1.37l-.36-.22-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26C2.16 6.44 6.6 2.01 12.05 2.01c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.44c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.48-8.41" />
+      </svg>
+    }
+    @case ('telegram') {
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M11.94 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0h-.06Zm4.97 7.22c.1 0 .32.03.46.14a.5.5 0 0 1 .17.33c.02.09.04.3.02.47-.18 1.9-.96 6.5-1.36 8.62-.17.9-.5 1.2-.82 1.23-.7.07-1.22-.46-1.9-.9-1.05-.69-1.65-1.12-2.67-1.8-1.19-.78-.42-1.21.25-1.91.18-.18 3.25-2.98 3.31-3.23 0-.03.01-.14-.05-.2-.06-.06-.17-.04-.24-.02-.1.02-1.77 1.13-5.02 3.32-.48.32-.9.48-1.3.48-.42 0-1.24-.24-1.85-.44-.75-.25-1.34-.38-1.29-.79.02-.21.32-.44.89-.66 3.5-1.53 5.83-2.53 7-3.02 3.33-1.38 4.02-1.62 4.47-1.63Z" />
+      </svg>
+    }
+    @case ('github') {
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 .3a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58l-.01-2.04c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1-.11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.28-1.23 3.28-1.23.65 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.62-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.21.69.83.57A12 12 0 0 0 12 .3" />
+      </svg>
+    }
+    @case ('linkedin') {
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.04c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13m1.78 13.02H3.56V9h3.56v11.45M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.2 0 22.23 0" />
+      </svg>
+    }
+  }
+</ng-template>
+
+<a class="skip-link" href="#main">Salta al contenuto</a>
+
+<!-- ======================================================================== -->
+<!--  Barra di navigazione                                                    -->
+<!-- ======================================================================== -->
+<header class="topbar">
+  <div class="shell topbar__inner">
+    <a class="brand" href="#main" aria-label="fg run — torna all'inizio">
+      <!-- Logo 'fg run': variante wordmark del favicon.svg, leggibile a 38px di altezza. -->
+      <svg class="brand__logo" viewBox="0 0 116 44" role="img" aria-hidden="true">
+        <rect x="1" y="1" width="114" height="42" rx="11" fill="#1e1e24" stroke="#2d2d35"
+              stroke-width="2" />
+        <path d="M 13 16 L 19 22 L 13 28" fill="none" stroke="#ffd166" stroke-width="3"
+              stroke-linecap="round" stroke-linejoin="round" />
+        <text x="26" y="28" fill="#ffd166" font-size="17" font-weight="bold" letter-spacing="0.5"
+              font-family="'JetBrains Mono', Consolas, 'Fira Code', monospace">fg run</text>
+        <rect class="brand__cursor" x="92" y="16" width="8" height="13" fill="#ffd166" />
+      </svg>
+      <span class="brand__text">
+        <strong>{{ profile.name }}</strong>
+        <small>{{ profile.role }}</small>
+      </span>
+    </a>
+
+    <nav class="topnav" aria-label="Sezioni della pagina">
+      @for (section of sections; track section.id) {
+        <a class="topnav__link" [href]="'#' + section.id">{{ section.label }}</a>
+      }
+    </nav>
+
+    <a class="topbar__cta" [href]="ctaEmail.href">Contattami</a>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ====================================================================== -->
+  <!--  HERO                                                                  -->
+  <!-- ====================================================================== -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__glow" aria-hidden="true"></div>
+
+    <div class="shell">
+      <!-- Banner GCP -->
+      <div class="gcp-banner" role="status">
+        <span class="gcp-banner__dots" aria-hidden="true">
+          <i class="dot dot--blue"></i><i class="dot dot--red"></i>
+          <i class="dot dot--yellow"></i><i class="dot dot--green"></i>
+        </span>
+        <span class="gcp-banner__text">
+          🚀 Hosted on Google Cloud Platform <span class="muted">(GCP Compute Engine)</span>
+        </span>
+        <span class="gcp-banner__status">
+          <span class="pulse" aria-hidden="true"></span>
+          Status: Online
+        </span>
+      </div>
+
+      <div class="hero__grid">
+        <!-- Foto / avatar -->
+        <div class="hero__avatar">
+          <div class="avatar">
+            @if (photoAvailable) {
+              <img
+                [src]="profile.photoUrl"
+                [alt]="'Foto di ' + profile.name"
+                width="220"
+                height="220"
+                loading="eager"
+                (error)="onPhotoError()" />
+            } @else {
+              <span class="avatar__initials" aria-hidden="true">{{ profile.initials }}</span>
+            }
+          </div>
+          <span class="avatar__badge">☕ Java</span>
+        </div>
+
+        <!-- Testi -->
+        <div class="hero__body">
+          <p class="hero__eyebrow">Ciao, sono</p>
+          <h1 id="hero-title" class="hero__title">{{ profile.name }}</h1>
+          <p class="hero__role">
+            {{ profile.role }}
+            <span class="hero__sep" aria-hidden="true">/</span>
+            <span class="hero__tagline">{{ profile.tagline }}</span>
+          </p>
+
+          <ul class="hero__meta">
+            <li>📍 {{ profile.location }}</li>
+            <li>🎂 {{ profile.birth }}</li>
+            <li>🧠 Background umanistico &amp; musicale</li>
+          </ul>
+
+          <p class="hero__bio">{{ profile.bio }}</p>
+
+          <ul class="stats">
+            @for (item of highlights; track item.label) {
+              <li class="stats__item">
+                <strong>{{ item.value }}</strong>
+                <span>{{ item.label }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- Azioni rapide / contatti -->
+      <h2 class="visually-hidden">Contatti e azioni rapide</h2>
+      <ul class="contacts">
+        @for (contact of contacts; track contact.label) {
+          <li>
+            <a
+              class="contact"
+              [class]="'contact--' + contact.icon"
+              [href]="contact.href"
+              [attr.target]="contact.external ? '_blank' : null"
+              [attr.rel]="contact.external ? 'noopener noreferrer' : null">
+              <span class="contact__icon">
+                <ng-container
+                  [ngTemplateOutlet]="icon"
+                  [ngTemplateOutletContext]="{ $implicit: contact.icon }"></ng-container>
+              </span>
+              <span class="contact__text">
+                <small>{{ contact.label }}</small>
+                <strong>{{ contact.value }}</strong>
+              </span>
+              <span class="contact__arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ====================================================================== -->
+  <!--  ESPERIENZA                                                            -->
+  <!-- ====================================================================== -->
+  <section id="esperienza" class="section" aria-labelledby="esperienza-title">
+    <div class="shell">
+      <header class="section__head">
+        <p class="section__kicker">01 — Carriera</p>
+        <h2 id="esperienza-title" class="section__title">Esperienza lavorativa</h2>
+        <p class="section__lead">
+          Dai microservizi in produzione alla regia di una diretta streaming: percorsi diversi, stessa
+          voglia di far funzionare le cose.
+        </p>
+      </header>
+
+      <ol class="timeline">
+        @for (job of experiences; track job.company + job.period) {
+          <li class="timeline__item" [class.timeline__item--current]="job.current">
+            <span class="timeline__dot" aria-hidden="true"></span>
+            <article class="card timeline__card">
+              <div class="timeline__top">
+                <h3 class="timeline__role">{{ job.role }}</h3>
+                @if (job.current) {
+                  <span class="chip chip--live">
+                    <span class="pulse" aria-hidden="true"></span> In corso
+                  </span>
+                }
+              </div>
+              <p class="timeline__company">
+                <strong>{{ job.company }}</strong>
+                <span class="muted">· {{ job.location }}</span>
+              </p>
+              <p class="timeline__period">{{ job.period }}</p>
+
+              <ul class="bullets">
+                @for (bullet of job.bullets; track bullet) {
+                  <li>{{ bullet }}</li>
+                }
+              </ul>
+
+              <ul class="tags">
+                @for (tag of job.tags; track tag) {
+                  <li class="tag">{{ tag }}</li>
+                }
+              </ul>
+            </article>
+          </li>
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- ====================================================================== -->
+  <!--  ISTRUZIONE                                                            -->
+  <!-- ====================================================================== -->
+  <section id="istruzione" class="section section--alt" aria-labelledby="istruzione-title">
+    <div class="shell">
+      <header class="section__head">
+        <p class="section__kicker">02 — Formazione</p>
+        <h2 id="istruzione-title" class="section__title">Istruzione &amp; Formazione</h2>
+        <p class="section__lead">
+          Una formazione tecnica costruita sopra un percorso umanistico e musicale. Non è un incidente:
+          è il motivo per cui riesco a stare in mezzo tra il codice e le persone.
+        </p>
+      </header>
+
+      <div class="edu">
+        <div class="edu__col">
+          <h3 class="edu__colTitle">💻 Formazione tecnica</h3>
+          @for (item of technicalEducation; track item.title) {
+            <article class="card edu__card">
+              <p class="edu__period">{{ item.period }}</p>
+              <h4 class="edu__title">{{ item.title }}</h4>
+              <p class="edu__institution">{{ item.institution }}</p>
+              <p class="edu__detail">{{ item.detail }}</p>
+            </article>
+          }
+        </div>
+
+        <div class="edu__col">
+          <h3 class="edu__colTitle">🎓 Percorso universitario &amp; musicale</h3>
+          @for (item of academicEducation; track item.title) {
+            <article class="card edu__card" [class.edu__card--music]="item.kind === 'music'">
+              <p class="edu__period">{{ item.period }}</p>
+              <h4 class="edu__title">{{ item.title }}</h4>
+              <p class="edu__institution">{{ item.institution }}</p>
+              <p class="edu__detail">{{ item.detail }}</p>
+            </article>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================== -->
+  <!--  TECH STACK                                                            -->
+  <!-- ====================================================================== -->
+  <section id="skills" class="section" aria-labelledby="skills-title">
+    <div class="shell">
+      <header class="section__head">
+        <p class="section__kicker">03 — Toolbox</p>
+        <h2 id="skills-title" class="section__title">Tech Stack &amp; Skills</h2>
+        <p class="section__lead">Quello con cui lavoro ogni giorno e quello con cui gioco la sera.</p>
+      </header>
+
+      <div class="skills">
+        @for (group of skillGroups; track group.name) {
+          <article class="card skills__group" [class]="'accent-' + group.accent">
+            <h3 class="skills__groupTitle">{{ group.name }}</h3>
+            <ul class="tags tags--lg">
+              @for (skill of group.items; track skill) {
+                <li class="tag">{{ skill }}</li>
+              }
+            </ul>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================== -->
+  <!--  BEHIND THE CODE                                                       -->
+  <!-- ====================================================================== -->
+  <section id="behind-the-code" class="section section--alt" aria-labelledby="behind-title">
+    <div class="shell">
+      <header class="section__head">
+        <p class="section__kicker">04 — Soft skills</p>
+        <h2 id="behind-title" class="section__title">Behind the Code</h2>
+        <p class="section__lead">
+          Le esperienze non convenzionali che mi hanno insegnato leadership, organizzazione e
+          resistenza allo stress meglio di qualsiasi corso.
+        </p>
+      </header>
+
+      <div class="soft">
+        @for (skill of softSkills; track skill.title) {
+          <article class="card soft__card">
+            <span class="soft__icon" aria-hidden="true">{{ skill.icon }}</span>
+            <h3 class="soft__title">{{ skill.title }}</h3>
+            <p class="soft__text">{{ skill.description }}</p>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================== -->
+  <!--  HOBBIES & FUN FACTS                                                   -->
+  <!-- ====================================================================== -->
+  <section id="hobbies" class="section" aria-labelledby="hobbies-title">
+    <div class="shell">
+      <header class="section__head">
+        <p class="section__kicker">05 — Human touch</p>
+        <h2 id="hobbies-title" class="section__title">Hobbies &amp; Fun Facts</h2>
+        <p class="section__lead">La parte del CV che di solito nessuno legge. Qui invece conviene.</p>
+      </header>
+
+      <div class="hobbies">
+        @for (hobby of hobbies; track hobby.title) {
+          <article class="card hobby">
+            <span class="hobby__icon" aria-hidden="true">{{ hobby.icon }}</span>
+            <h3 class="hobby__title">{{ hobby.title }}</h3>
+            <p class="hobby__text">{{ hobby.text }}</p>
+          </article>
+        }
+
+        <!--
+          Card interattiva: Palestra.
+          La verità resta visibile solo durante l'interazione: hover del mouse,
+          dito premuto su touch, Invio/Spazio tenuto sul badge. Nessun :hover in
+          CSS, altrimenti su mobile lo stato resterebbe appeso dopo il tap.
+        -->
+        <article
+          class="card hobby hobby--gym"
+          [class.is-revealed]="isRevealed"
+          (pointerenter)="onPointerEnter($event)"
+          (pointerleave)="onPointerLeave()"
+          (pointerdown)="onPressStart($event)"
+          (pointerup)="onPressEnd($event)"
+          (pointercancel)="onPressEnd($event)">
+          <span class="hobby__icon" aria-hidden="true">🏋️</span>
+          <h3 class="hobby__title">Palestra</h3>
+
+          <!-- I due testi condividono la stessa cella della griglia: nessun salto di layout. -->
+          <div class="gym__stage">
+            <p class="hobby__text gym__text gym__text--cover">
+              Tre volte a settimana, disciplina ferrea, nessuna scusa. 💪
+            </p>
+            <p id="gym-truth" class="hobby__text gym__text gym__text--truth">
+              Non è vero, la metto solo per fare bella figura con la mia fidanzata se dovesse mai
+              aprire questo sito 👀
+            </p>
+          </div>
+
+          <button
+            type="button"
+            class="gym__badge"
+            (keydown)="onKeyPressStart($event)"
+            (keyup)="onKeyPressEnd()"
+            (blur)="onKeyPressEnd()"
+            [attr.aria-expanded]="isRevealed"
+            aria-controls="gym-truth">
+            Mostra la verità sulla palestra
+          </button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================== -->
+  <!--  CTA finale                                                            -->
+  <!-- ====================================================================== -->
+  <section class="cta" aria-labelledby="cta-title">
+    <div class="shell cta__inner">
+      <h2 id="cta-title" class="cta__title">Parliamone davanti a un caffè ☕</h2>
+      <p class="cta__text">
+        Microservizi da salvare, pipeline da sistemare o un LLM da far girare in locale? Scrivimi.
+      </p>
+      <div class="cta__actions">
+        <a class="btn btn--primary" [href]="ctaEmail.href">✉️ {{ ctaEmail.value }}</a>
+        <a class="btn btn--ghost" [href]="ctaPhone.href">📞 {{ ctaPhone.value }}</a>
+        <a
+          class="btn btn--ghost"
+          [href]="ctaWhatsapp.href"
+          target="_blank"
+          rel="noopener noreferrer">💬 WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="shell footer__inner">
+    <p>© {{ currentYear }} {{ profile.name }} · Costruito con Angular &amp; SCSS</p>
+    <p class="footer__host">
+      <span class="pulse" aria-hidden="true"></span>
+      Running on GCP Compute Engine
+    </p>
+  </div>
+</footer>
