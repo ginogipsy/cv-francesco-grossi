@@ -72,11 +72,6 @@ export interface Hobby {
 const PHONE = '+39 349 336 9549';
 const PHONE_TEL = 'tel:+393493369549';
 const EMAIL = 'francescogrossi92@outlook.it';
-
-/**
- * TODO: sostituire con l'URL esatto del profilo LinkedIn.
- * Non era presente nel CV: qui è usato lo stesso handle di GitHub/WhatsApp.
- */
 const LINKEDIN_URL = 'https://www.linkedin.com/in/francescogrossi92/';
 
 /* -------------------------------------------------------------------------- */
@@ -156,21 +151,21 @@ export class AppComponent {
     },
     {
       label: 'WhatsApp',
-      value: 'Francesco Grossi',
+      value: 'Contattami su WhatsApp',
       href: 'https://wa.me/393493369549',
       icon: 'whatsapp',
       external: true,
     },
     {
       label: 'Telegram',
-      value: '@ginogipsy',
+      value: 'Contattami su Telegram',
       href: 'https://t.me/ginogipsy',
       icon: 'telegram',
       external: true,
     },
     {
       label: 'GitHub',
-      value: '@ginogipsy',
+      value: 'I miei progetti su GitHub',
       href: 'https://github.com/ginogipsy',
       icon: 'github',
       external: true,
@@ -198,7 +193,7 @@ export class AppComponent {
       current: true,
       bullets: [
         'Sviluppo hands-on sul codice e supporto alla regia del team: stime, gestione delle issue, supporto ai rilasci.',
-        'Affiancamento ai colleghi nell\'adozione della Generative AI nel flusso di lavoro quotidiano.',
+        "Affiancamento ai colleghi nell'adozione della Generative AI nel flusso di lavoro quotidiano.",
         'Progettazione SOLID su microservizi Java, con attenzione a manutenibilità e osservabilità.',
       ],
       tags: [
@@ -255,7 +250,7 @@ export class AppComponent {
       current: false,
       bullets: [
         'Regia e riprese in streaming dei campionati di FutSal Serie A1 / A2.',
-        'Montaggio video e gestione completa dell\'attrezzatura di produzione.',
+        "Montaggio video e gestione completa dell'attrezzatura di produzione.",
       ],
       tags: ['Regia', 'Streaming live', 'Montaggio', 'Troubleshooting on-field'],
     },
@@ -306,12 +301,29 @@ export class AppComponent {
     {
       name: 'Core Back-end',
       accent: 'blue',
-      items: ['Java', 'Spring Boot', 'Spring Cloud', 'Spring Data JPA', 'Hibernate', 'REST / API-first'],
+      items: [
+        'Java',
+        'Spring Boot',
+        'Spring Cloud',
+        'Spring Data JPA',
+        'Hibernate',
+        'REST / API-first',
+      ],
     },
     {
       name: 'Architettura & Infra',
       accent: 'green',
-      items: ['Microservizi', 'Docker', 'Keycloak', 'JMS / ActiveMQ', 'Pattern SAGA', 'CI/CD', 'Grafana', 'Linux', 'Git'],
+      items: [
+        'Microservizi',
+        'Docker',
+        'Keycloak',
+        'JMS / ActiveMQ',
+        'Pattern SAGA',
+        'CI/CD',
+        'Grafana',
+        'Linux',
+        'Git',
+      ],
     },
     {
       name: 'Data & Front-end',
@@ -321,7 +333,13 @@ export class AppComponent {
     {
       name: 'AI & Sperimentazione',
       accent: 'red',
-      items: ['Ollama', 'LLM in locale', 'Agentic AI', 'Prompt engineering', 'Generative AI nel team'],
+      items: [
+        'Ollama',
+        'LLM in locale',
+        'Agentic AI',
+        'Prompt engineering',
+        'Generative AI nel team',
+      ],
     },
   ];
 
@@ -347,17 +365,20 @@ export class AppComponent {
     {
       icon: '🧾',
       title: 'Inventarista — RGIS',
-      description: 'Precisione sui numeri, turni notturni e nessuna tolleranza per gli errori di conteggio.',
+      description:
+        'Precisione sui numeri, turni notturni e nessuna tolleranza per gli errori di conteggio.',
     },
     {
       icon: '🍽️',
       title: 'Lavapiatti — Fregene',
-      description: 'La prima lezione sul concetto di "coda di lavorazione" e di throughput sotto carico.',
+      description:
+        'La prima lezione sul concetto di "coda di lavorazione" e di throughput sotto carico.',
     },
     {
       icon: '☎️',
       title: 'Operatore Call Center — TPhone',
-      description: 'Ascolto attivo e traduzione del "tecnichese": qui ho imparato a parlare con le persone, non ai log.',
+      description:
+        'Ascolto attivo e traduzione del "tecnichese": qui ho imparato a parlare con le persone, non ai log.',
     },
   ];
 
