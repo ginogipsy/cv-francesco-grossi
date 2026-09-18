@@ -43,6 +43,7 @@ src/
 | Email     | `mailto:francescogrossi92@outlook.it` |
 | Indirizzo | Google Maps (`?api=1&query=Via+Ponzio+Cominio+00175+Roma`) |
 | WhatsApp  | `https://wa.me/393493369549` |
+| Telegram  | `https://t.me/ginogipsy` |
 | GitHub    | `https://github.com/ginogipsy` |
 | LinkedIn  | `LINKEDIN_URL` in `app.component.ts` — **da verificare** |
 

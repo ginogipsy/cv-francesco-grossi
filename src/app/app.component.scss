@@ -439,18 +439,29 @@
    Contatti / azioni rapide
    -------------------------------------------------------------------------- */
 
+/* Flexbox invece di una griglia a colonne fisse: ogni card parte dalla propria
+   larghezza naturale (flex-basis: auto) e poi cresce per riempire la riga, così
+   l'email e l'indirizzo non vengono mai troncati. */
 .contacts {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-top: 44px;
+
+  > li {
+    display: flex;
+    flex: 1 1 auto;
+    /* Larghezza minima leggibile, ma senza mai sforare il contenitore. */
+    min-width: min(100%, 240px);
+    max-width: 100%;
+  }
 }
 
 .contact {
   display: flex;
   align-items: center;
   gap: 13px;
-  height: 100%;
+  width: 100%;
   padding: 14px 16px;
   background: linear-gradient(180deg, var(--surface) 0%, var(--bg-elev) 100%);
   border: 1px solid var(--border);
@@ -484,7 +495,7 @@
   &__text {
     display: flex;
     flex-direction: column;
-    min-width: 0;
+    /* Nessun min-width: 0 -> la card non si comprime sotto la larghezza del testo. */
 
     small {
       color: var(--text-dim);
@@ -493,12 +504,12 @@
       text-transform: uppercase;
     }
 
+    /* Nessun ellipsis: su schermi stretti il valore va a capo invece di tagliarsi. */
     strong {
-      overflow: hidden;
       font-size: 0.9rem;
       font-weight: 600;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
     }
   }
 
@@ -561,6 +572,16 @@
       background: rgb(37 211 102 / 16%);
       border-color: rgb(37 211 102 / 50%);
       color: #25d366;
+    }
+  }
+
+  &--telegram:hover {
+    border-color: rgb(42 171 227 / 60%);
+
+    .contact__icon {
+      background: rgb(42 171 227 / 16%);
+      border-color: rgb(42 171 227 / 50%);
+      color: #2aabe3;
     }
   }
 
@@ -1026,9 +1047,10 @@
   }
 }
 
-/* Stato "verità svelata": tap sul badge (mobile) o focus da tastiera. */
-.hobby--gym.is-revealed,
-.hobby--gym:focus-within {
+/* Unico stato di reveal, pilotato dal componente (`isRevealed`) tramite pointer
+   events: nessun :hover / :focus-within in CSS, che su touch resterebbe attivo
+   dopo il tap ("hover sticky"). */
+.hobby--gym.is-revealed {
   border-color: rgb(251 188 4 / 55%);
 
   .gym__text--cover {
@@ -1042,26 +1064,6 @@
     transform: translateY(0);
     filter: blur(0);
     pointer-events: auto;
-  }
-}
-
-/* Desktop: basta passare il mouse sulla card. */
-@media (hover: hover) and (pointer: fine) {
-  .hobby--gym:hover {
-    border-color: rgb(251 188 4 / 55%);
-
-    .gym__text--cover {
-      opacity: 0;
-      transform: translateY(-8px);
-      filter: blur(3px);
-    }
-
-    .gym__text--truth {
-      opacity: 1;
-      transform: translateY(0);
-      filter: blur(0);
-      pointer-events: auto;
-    }
   }
 }
 
@@ -1080,23 +1082,20 @@
   letter-spacing: 0.01em;
   text-align: left;
   cursor: pointer;
+  /* Evita che il press-and-hold selezioni il testo del bottone. */
+  user-select: none;
+  -webkit-touch-callout: none;
   transition:
     background 0.22s ease,
     border-color 0.22s ease,
     transform 0.22s ease;
 }
 
-.hobby--gym:hover .gym__badge,
-.hobby--gym.is-revealed .gym__badge,
-.gym__badge:hover {
+.hobby--gym.is-revealed .gym__badge {
   background: rgb(255 209 102 / 18%);
   border-style: solid;
   border-color: rgb(255 209 102 / 70%);
   transform: translateY(-1px);
-}
-
-.gym__badge:active {
-  transform: translateY(0);
 }
 
 /* --------------------------------------------------------------------------
