@@ -1,0 +1,37 @@
+# Senza questo file `COPY . .` copia node_modules costruito su Windows dentro
+# l'immagine alpine, sovrascrivendo quello installato da `npm ci`.
+
+# --- Node & output di build -------------------------------------------------
+node_modules
+dist
+.angular
+coverage
+out-tsc
+tmp
+
+# --- VCS & CI ---------------------------------------------------------------
+.git
+.gitignore
+.github
+qodana.yaml
+
+# --- IDE --------------------------------------------------------------------
+.idea
+.vscode
+*.iml
+
+# --- Documentazione & meta --------------------------------------------------
+docs
+*.md
+.editorconfig
+.prettierrc
+
+# --- Log & OS ---------------------------------------------------------------
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Il Dockerfile non serve dentro il contesto di build.
+Dockerfile
+.dockerignore
