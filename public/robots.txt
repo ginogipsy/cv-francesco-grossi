@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://francescogrossi.it/sitemap.xml

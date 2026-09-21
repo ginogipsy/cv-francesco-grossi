@@ -2,26 +2,85 @@
 <html lang="it">
 <head>
   <meta charset="utf-8">
-  <title>Francesco Grossi · Back-end Java Developer</title>
+  <!-- Prima di ogni URL relativo: e' <base> a risolverli (favicon compresa). -->
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ── SEO ─────────────────────────────────────────────────────────────── -->
+  <title>Francesco Grossi · Back-end Java Developer</title>
   <meta name="description"
-        content="Francesco Grossi — Sviluppatore Back-end Java: microservizi, Spring Boot, CI/CD e un po' di Generative AI in locale. Hosted on Google Cloud Platform.">
+        content="Curriculum interattivo e portfolio personale. Esperienze nello sviluppo software backend e microservizi (Java/Spring Boot), architetture cloud su GCP e frontend Angular.">
+  <meta name="author" content="Francesco Grossi">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://francescogrossi.it/">
   <meta name="theme-color" content="#07090f">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="profile">
-  <meta property="og:title" content="Francesco Grossi · Back-end Java Developer">
-  <meta property="og:description"
-        content="Microservizi Java, Spring Boot, CI/CD e LLM in locale. Con un background tra scienze umane e musica.">
+  <!-- Google ignora keywords dal 2009. Innocuo, utile solo a motori minori. -->
+  <meta name="keywords"
+        content="Francesco Grossi, curriculum, CV, portfolio, back-end developer, Java, Spring Boot, microservizi, Google Cloud Platform, GCP, Angular, Docker, CI/CD">
 
+  <!-- ── Icone ───────────────────────────────────────────────────────────── -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-  <!-- Font -->
+  <!-- ── Open Graph (LinkedIn, Facebook, WhatsApp, Telegram, Slack) ───────── -->
+  <!-- Gli URL qui devono essere ASSOLUTI: gli scraper non applicano <base>. -->
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="Francesco Grossi">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:url" content="https://francescogrossi.it/">
+  <meta property="og:title" content="Francesco Grossi · Back-end Java Developer">
+  <meta property="og:description"
+        content="Curriculum interattivo e portfolio personale. Esperienze nello sviluppo software backend e microservizi (Java/Spring Boot), architetture cloud su GCP e frontend Angular.">
+  <!-- width/height dichiarati: LinkedIn e Facebook renderizzano la card grande
+       al primo scrape invece di aspettare di aver scaricato l'immagine.
+       Devono corrispondere ai pixel reali del file. -->
+  <meta property="og:image" content="https://francescogrossi.it/assets/preview.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Francesco Grossi — Back-end Java Developer">
+  <meta property="profile:first_name" content="Francesco">
+  <meta property="profile:last_name" content="Grossi">
+
+  <!-- ── Twitter / X ──────────────────────────────────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Francesco Grossi · Back-end Java Developer">
+  <meta name="twitter:description"
+        content="Curriculum interattivo e portfolio personale. Esperienze nello sviluppo software backend e microservizi (Java/Spring Boot), architetture cloud su GCP e frontend Angular.">
+  <meta name="twitter:image" content="https://francescogrossi.it/assets/preview.png">
+  <meta name="twitter:image:alt" content="Francesco Grossi — Back-end Java Developer">
+
+  <!-- ── Font ─────────────────────────────────────────────────────────────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+
+  <!-- ── Dati strutturati ─────────────────────────────────────────────────── -->
+  <!-- sameAs collega il dominio ai profili gia' linkati nell'app: e' il segnale
+       con cui Google riconosce che sono la stessa persona. -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Francesco Grossi",
+      "jobTitle": "Back-end Java Developer",
+      "url": "https://francescogrossi.it/",
+      "image": "https://francescogrossi.it/assets/profile.jpg",
+      "sameAs": [
+        "https://github.com/ginogipsy",
+        "https://www.linkedin.com/in/francescogrossi92/"
+      ],
+      "knowsAbout": [
+        "Java",
+        "Spring Boot",
+        "Microservizi",
+        "Google Cloud Platform",
+        "Angular",
+        "Docker"
+      ]
+    }
+  </script>
 </head>
 <body>
   <app-root></app-root>

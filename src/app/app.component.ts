@@ -114,7 +114,7 @@ export class AppComponent {
 
   readonly highlights = [
     { value: '~5 anni', label: 'di esperienza' },
-    { value: 'Java 8→21', label: 'Spring Boot / Cloud' },
+    { value: 'Java 8→25', label: 'Spring Boot / Cloud' },
     { value: 'Docker', label: 'CI/CD & rilasci' },
     { value: 'Ollama', label: 'LLM in locale' },
   ];
