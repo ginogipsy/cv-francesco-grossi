@@ -3,7 +3,7 @@
 > [!IMPORTANT]
 > **Pulsante "Approve" (Terzo Pallino)**
 > Se sui branch di sviluppo la pipeline si ferma senza mostrare il tasto "Review deployments", significa che l'ambiente non è configurato.
-> **Assicurati di aver creato l'environment `san-martino-registry`** in *Settings -> Environments* con la regola *Required reviewers* attiva (aggiungendo il tuo nome utente). Senza questo passaggio, il deploy manuale non può funzionare.
+> **Assicurati di aver creato l'environment `cv-francesco-grossi`** in *Settings -> Environments* con la regola *Required reviewers* attiva (aggiungendo il tuo nome utente). Senza questo passaggio, il deploy manuale non può funzionare.
 
 Questa guida spiega come gestire il ciclo di vita dell'applicazione, i rilasci su GitHub e il sistema di versionamento automatico.
 
@@ -47,17 +47,19 @@ Il processo segue il modello **Git Flow**. Hai quattro modi per decidere la vers
 
 La pubblicazione delle immagini Docker sul registry (GHCR) segue una logica differenziata per garantire velocità in produzione e controllo nello sviluppo.
 
-### 🚀 Pubblicazione Automatica (Continuous Deployment)
-L'immagine viene creata e pushata **automaticamente** in due casi:
-- **Merge su `master`**: L'immagine viene taggata come `latest`.
-- **Creazione di un Tag Git (`v*`)**: L'immagine viene taggata con la versione corrispondente.
+### 🚀 Pubblicazione Automatica
+L'immagine viene creata e pushata **automaticamente** su **GHCR** quando viene creato un **Tag Git (`v*`)**.
+Il processo è:
+1. Il merge su `master` attiva `release.yml`.
+2. `release.yml` crea il tag di versione.
+3. Il tag attiva `deploy.yml`, che pubblica l'immagine con il tag della versione e `latest`.
 
-### ✋ Pubblicazione Manuale (Il "Terzo Pallino")
-Sui branch di sviluppo (**`develop`**, **`feature/*`**), la pipeline si ferma dopo i test:
-1. Vai nella tab **Actions** su GitHub e clicca sulla run corrente.
-2. Vedrai un pulsante **"Review deployments"**.
-3. Clicca su **Approve** (per l'environment `san-martino-registry`).
-4. **Risultato**: L'immagine verrà pubblicata con il **nome del branch** (es. `feature-X`), pronta per essere testata.
+### ✋ Pubblicazione Manuale
+È possibile pubblicare un'immagine da qualsiasi branch o tag esistente tramite la tab **Actions**:
+1. Seleziona il workflow **"Deploy image"**.
+2. Clicca su **"Run workflow"**.
+3. Scegli il branch/tag desiderato.
+4. L'immagine verrà taggata con il nome del branch scelto.
 
 ---
 

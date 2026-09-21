@@ -46,14 +46,14 @@
   }
 </ng-template>
 
-<a class="skip-link" href="#main">Salta al contenuto</a>
+<a class="skip-link" href="#main">{{ t().ui.skipToContent }}</a>
 
 <!-- ======================================================================== -->
 <!--  Barra di navigazione                                                    -->
 <!-- ======================================================================== -->
 <header class="topbar">
   <div class="shell topbar__inner">
-    <a class="brand" href="#main" aria-label="fg run — torna all'inizio">
+    <a class="brand" href="#main" [attr.aria-label]="t().ui.brandHome">
       <!-- Logo 'fg run': variante wordmark del favicon.svg, leggibile a 38px di altezza. -->
       <svg class="brand__logo" viewBox="0 0 116 44" role="img" aria-hidden="true">
         <rect x="1" y="1" width="114" height="42" rx="11" fill="#1e1e24" stroke="#2d2d35"
@@ -65,18 +65,41 @@
         <rect class="brand__cursor" x="92" y="16" width="8" height="13" fill="#ffd166" />
       </svg>
       <span class="brand__text">
-        <strong>{{ profile.name }}</strong>
-        <small>{{ profile.role }}</small>
+        <strong>{{ t().profile.name }}</strong>
+        <small>{{ t().profile.role }}</small>
       </span>
     </a>
 
-    <nav class="topnav" aria-label="Sezioni della pagina">
-      @for (section of sections; track section.id) {
+    <nav class="topnav" [attr.aria-label]="t().ui.navLabel">
+      @for (section of t().sections; track section.id) {
         <a class="topnav__link" [href]="'#' + section.id">{{ section.label }}</a>
       }
     </nav>
 
-    <a class="topbar__cta" [href]="ctaEmail.href">Contattami</a>
+    <!--
+      Selettore lingua: segmented control a due bottoni invece di un <select>.
+      Entrambe le opzioni restano leggibili a colpo d'occhio e su mobile non
+      apre il menu a rullo nativo. `aria-pressed` comunica quale e' attiva.
+      Le sigle ITA/ENG non si traducono: sono identiche nelle due lingue.
+    -->
+    <div class="lang-switch" role="group" [attr.aria-label]="t().ui.langSwitchLabel">
+      <button
+        type="button"
+        class="lang-switch__btn"
+        [class.is-active]="lang() === 'it'"
+        [attr.aria-pressed]="lang() === 'it'"
+        [attr.aria-label]="t().ui.switchToItalian"
+        (click)="setLang('it')">ITA</button>
+      <button
+        type="button"
+        class="lang-switch__btn"
+        [class.is-active]="lang() === 'en'"
+        [attr.aria-pressed]="lang() === 'en'"
+        [attr.aria-label]="t().ui.switchToEnglish"
+        (click)="setLang('en')">ENG</button>
+    </div>
+
+    <a class="topbar__cta" [href]="ctaEmail().href">{{ t().ui.topbarCta }}</a>
   </div>
 </header>
 
@@ -95,11 +118,11 @@
           <i class="dot dot--yellow"></i><i class="dot dot--green"></i>
         </span>
         <span class="gcp-banner__text">
-          🚀 Hosted on Google Cloud Platform <span class="muted">(GCP Compute Engine)</span>
+          {{ t().ui.bannerText }} <span class="muted">{{ t().ui.bannerHost }}</span>
         </span>
         <span class="gcp-banner__status">
           <span class="pulse" aria-hidden="true"></span>
-          Status: Online
+          {{ t().ui.bannerStatus }}
         </span>
       </div>
 
@@ -109,39 +132,39 @@
           <div class="avatar">
             @if (photoAvailable) {
               <img
-                [src]="profile.photoUrl"
-                [alt]="'Foto di ' + profile.name"
+                [src]="t().profile.photoUrl"
+                [alt]="t().ui.photoAlt"
                 width="220"
                 height="220"
                 loading="eager"
                 (error)="onPhotoError()" />
             } @else {
-              <span class="avatar__initials" aria-hidden="true">{{ profile.initials }}</span>
+              <span class="avatar__initials" aria-hidden="true">{{ t().profile.initials }}</span>
             }
           </div>
-          <span class="avatar__badge">☕ Java</span>
+          <span class="avatar__badge">{{ t().ui.avatarBadge }}</span>
         </div>
 
         <!-- Testi -->
         <div class="hero__body">
-          <p class="hero__eyebrow">Ciao, sono</p>
-          <h1 id="hero-title" class="hero__title">{{ profile.name }}</h1>
+          <p class="hero__eyebrow">{{ t().ui.heroEyebrow }}</p>
+          <h1 id="hero-title" class="hero__title">{{ t().profile.name }}</h1>
           <p class="hero__role">
-            {{ profile.role }}
+            {{ t().profile.role }}
             <span class="hero__sep" aria-hidden="true">/</span>
-            <span class="hero__tagline">{{ profile.tagline }}</span>
+            <span class="hero__tagline">{{ t().profile.tagline }}</span>
           </p>
 
           <ul class="hero__meta">
-            <li>📍 {{ profile.location }}</li>
-            <li>🎂 {{ profile.birth }}</li>
-            <li>🧠 Background umanistico &amp; musicale</li>
+            <li>📍 {{ t().profile.location }}</li>
+            <li>🎂 {{ t().profile.birth }}</li>
+            <li>{{ t().ui.heroBackground }}</li>
           </ul>
 
-          <p class="hero__bio">{{ profile.bio }}</p>
+          <p class="hero__bio">{{ t().profile.bio }}</p>
 
           <ul class="stats">
-            @for (item of highlights; track item.label) {
+            @for (item of t().highlights; track item.label) {
               <li class="stats__item">
                 <strong>{{ item.value }}</strong>
                 <span>{{ item.label }}</span>
@@ -152,9 +175,9 @@
       </div>
 
       <!-- Azioni rapide / contatti -->
-      <h2 class="visually-hidden">Contatti e azioni rapide</h2>
+      <h2 class="visually-hidden">{{ t().ui.quickActionsHeading }}</h2>
       <ul class="contacts">
-        @for (contact of contacts; track contact.label) {
+        @for (contact of t().contacts; track contact.icon) {
           <li>
             <a
               class="contact"
@@ -185,16 +208,13 @@
   <section id="esperienza" class="section" aria-labelledby="esperienza-title">
     <div class="shell">
       <header class="section__head">
-        <p class="section__kicker">01 — Carriera</p>
-        <h2 id="esperienza-title" class="section__title">Esperienza lavorativa</h2>
-        <p class="section__lead">
-          Dai microservizi in produzione alla regia di una diretta streaming: percorsi diversi, stessa
-          voglia di far funzionare le cose.
-        </p>
+        <p class="section__kicker">{{ t().headings.esperienza.kicker }}</p>
+        <h2 id="esperienza-title" class="section__title">{{ t().headings.esperienza.title }}</h2>
+        <p class="section__lead">{{ t().headings.esperienza.lead }}</p>
       </header>
 
       <ol class="timeline">
-        @for (job of experiences; track job.company + job.period) {
+        @for (job of t().experiences; track job.company + job.period) {
           <li class="timeline__item" [class.timeline__item--current]="job.current">
             <span class="timeline__dot" aria-hidden="true"></span>
             <article class="card timeline__card">
@@ -202,7 +222,7 @@
                 <h3 class="timeline__role">{{ job.role }}</h3>
                 @if (job.current) {
                   <span class="chip chip--live">
-                    <span class="pulse" aria-hidden="true"></span> In corso
+                    <span class="pulse" aria-hidden="true"></span> {{ t().ui.currentJob }}
                   </span>
                 }
               </div>
@@ -231,23 +251,20 @@
   </section>
 
   <!-- ====================================================================== -->
-  <!--  ISTRUZIONE                                                            -->
+  <!--  ISTRUZIONE, FORMAZIONE & LINGUE                                       -->
   <!-- ====================================================================== -->
   <section id="istruzione" class="section section--alt" aria-labelledby="istruzione-title">
     <div class="shell">
       <header class="section__head">
-        <p class="section__kicker">02 — Formazione</p>
-        <h2 id="istruzione-title" class="section__title">Istruzione &amp; Formazione</h2>
-        <p class="section__lead">
-          Una formazione tecnica costruita sopra un percorso umanistico e musicale. Non è un incidente:
-          è il motivo per cui riesco a stare in mezzo tra il codice e le persone.
-        </p>
+        <p class="section__kicker">{{ t().headings.istruzione.kicker }}</p>
+        <h2 id="istruzione-title" class="section__title">{{ t().headings.istruzione.title }}</h2>
+        <p class="section__lead">{{ t().headings.istruzione.lead }}</p>
       </header>
 
       <div class="edu">
         <div class="edu__col">
-          <h3 class="edu__colTitle">💻 Formazione tecnica</h3>
-          @for (item of technicalEducation; track item.title) {
+          <h3 class="edu__colTitle">{{ t().ui.eduTechTitle }}</h3>
+          @for (item of t().technicalEducation; track item.title) {
             <article class="card edu__card">
               <p class="edu__period">{{ item.period }}</p>
               <h4 class="edu__title">{{ item.title }}</h4>
@@ -258,13 +275,43 @@
         </div>
 
         <div class="edu__col">
-          <h3 class="edu__colTitle">🎓 Percorso universitario &amp; musicale</h3>
-          @for (item of academicEducation; track item.title) {
+          <h3 class="edu__colTitle">{{ t().ui.eduAcademicTitle }}</h3>
+          @for (item of t().academicEducation; track item.title) {
             <article class="card edu__card" [class.edu__card--music]="item.kind === 'music'">
               <p class="edu__period">{{ item.period }}</p>
               <h4 class="edu__title">{{ item.title }}</h4>
               <p class="edu__institution">{{ item.institution }}</p>
               <p class="edu__detail">{{ item.detail }}</p>
+            </article>
+          }
+        </div>
+
+        <!--
+          Lingue parlate. Terza colonna della griglia .edu, che e' gia'
+          auto-fit: entra senza toccare il layout delle altre due.
+        -->
+        <div class="edu__col">
+          <h3 class="edu__colTitle">{{ t().ui.eduLanguagesTitle }}</h3>
+          @for (language of t().languages; track language.flag) {
+            <article class="card edu__card lang-card" [class.lang-card--native]="language.native">
+              <p class="lang-card__head">
+                <span class="lang-card__flag" aria-hidden="true">{{ language.flag }}</span>
+                <span class="lang-card__name">{{ language.name }}</span>
+                <span class="chip lang-card__level">{{ language.level }}</span>
+              </p>
+
+              <!-- La madrelingua non ha un dettaglio CEFR da mostrare. -->
+              @if (!language.native) {
+                <p class="edu__detail">{{ t().ui.languageAbilities }}</p>
+                <ul class="tags lang-card__abilities">
+                  @for (ability of language.breakdown; track ability.skill) {
+                    <li class="tag">
+                      {{ ability.skill }}
+                      <strong class="lang-card__cefr">{{ ability.cefr }}</strong>
+                    </li>
+                  }
+                </ul>
+              }
             </article>
           }
         </div>
@@ -278,13 +325,13 @@
   <section id="skills" class="section" aria-labelledby="skills-title">
     <div class="shell">
       <header class="section__head">
-        <p class="section__kicker">03 — Toolbox</p>
-        <h2 id="skills-title" class="section__title">Tech Stack &amp; Skills</h2>
-        <p class="section__lead">Quello con cui lavoro ogni giorno e quello con cui gioco la sera.</p>
+        <p class="section__kicker">{{ t().headings.skills.kicker }}</p>
+        <h2 id="skills-title" class="section__title">{{ t().headings.skills.title }}</h2>
+        <p class="section__lead">{{ t().headings.skills.lead }}</p>
       </header>
 
       <div class="skills">
-        @for (group of skillGroups; track group.name) {
+        @for (group of t().skillGroups; track group.accent) {
           <article class="card skills__group" [class]="'accent-' + group.accent">
             <h3 class="skills__groupTitle">{{ group.name }}</h3>
             <ul class="tags tags--lg">
@@ -304,16 +351,15 @@
   <section id="behind-the-code" class="section section--alt" aria-labelledby="behind-title">
     <div class="shell">
       <header class="section__head">
-        <p class="section__kicker">04 — Soft skills</p>
-        <h2 id="behind-title" class="section__title">Behind the Code</h2>
-        <p class="section__lead">
-          Le esperienze non convenzionali che mi hanno insegnato leadership, organizzazione e
-          resistenza allo stress meglio di qualsiasi corso.
-        </p>
+        <p class="section__kicker">{{ t().headings['behind-the-code'].kicker }}</p>
+        <h2 id="behind-title" class="section__title">
+          {{ t().headings['behind-the-code'].title }}
+        </h2>
+        <p class="section__lead">{{ t().headings['behind-the-code'].lead }}</p>
       </header>
 
       <div class="soft">
-        @for (skill of softSkills; track skill.title) {
+        @for (skill of t().softSkills; track skill.icon) {
           <article class="card soft__card">
             <span class="soft__icon" aria-hidden="true">{{ skill.icon }}</span>
             <h3 class="soft__title">{{ skill.title }}</h3>
@@ -330,13 +376,13 @@
   <section id="hobbies" class="section" aria-labelledby="hobbies-title">
     <div class="shell">
       <header class="section__head">
-        <p class="section__kicker">05 — Human touch</p>
-        <h2 id="hobbies-title" class="section__title">Hobbies &amp; Fun Facts</h2>
-        <p class="section__lead">La parte del CV che di solito nessuno legge. Qui invece conviene.</p>
+        <p class="section__kicker">{{ t().headings.hobbies.kicker }}</p>
+        <h2 id="hobbies-title" class="section__title">{{ t().headings.hobbies.title }}</h2>
+        <p class="section__lead">{{ t().headings.hobbies.lead }}</p>
       </header>
 
       <div class="hobbies">
-        @for (hobby of hobbies; track hobby.title) {
+        @for (hobby of t().hobbies; track hobby.icon) {
           <article class="card hobby">
             <span class="hobby__icon" aria-hidden="true">{{ hobby.icon }}</span>
             <h3 class="hobby__title">{{ hobby.title }}</h3>
@@ -358,18 +404,13 @@
           (pointerdown)="onPressStart($event)"
           (pointerup)="onPressEnd($event)"
           (pointercancel)="onPressEnd($event)">
-          <span class="hobby__icon" aria-hidden="true">🏋️</span>
-          <h3 class="hobby__title">Palestra</h3>
+          <span class="hobby__icon" aria-hidden="true">{{ t().gym.icon }}</span>
+          <h3 class="hobby__title">{{ t().gym.title }}</h3>
 
           <!-- I due testi condividono la stessa cella della griglia: nessun salto di layout. -->
           <div class="gym__stage">
-            <p class="hobby__text gym__text gym__text--cover">
-              Tre volte a settimana, disciplina ferrea, nessuna scusa. 💪
-            </p>
-            <p id="gym-truth" class="hobby__text gym__text gym__text--truth">
-              Non è vero, la metto solo per fare bella figura con la mia fidanzata se dovesse mai
-              aprire questo sito 👀
-            </p>
+            <p class="hobby__text gym__text gym__text--cover">{{ t().gym.cover }}</p>
+            <p id="gym-truth" class="hobby__text gym__text gym__text--truth">{{ t().gym.truth }}</p>
           </div>
 
           <button
@@ -380,7 +421,7 @@
             (blur)="onKeyPressEnd()"
             [attr.aria-expanded]="isRevealed"
             aria-controls="gym-truth">
-            Mostra la verità sulla palestra
+            {{ t().gym.badge }}
           </button>
         </article>
       </div>
@@ -392,18 +433,16 @@
   <!-- ====================================================================== -->
   <section class="cta" aria-labelledby="cta-title">
     <div class="shell cta__inner">
-      <h2 id="cta-title" class="cta__title">Parliamone davanti a un caffè ☕</h2>
-      <p class="cta__text">
-        Microservizi da salvare, pipeline da sistemare o un LLM da far girare in locale? Scrivimi.
-      </p>
+      <h2 id="cta-title" class="cta__title">{{ t().cta.title }}</h2>
+      <p class="cta__text">{{ t().cta.text }}</p>
       <div class="cta__actions">
-        <a class="btn btn--primary" [href]="ctaEmail.href">✉️ {{ ctaEmail.value }}</a>
-        <a class="btn btn--ghost" [href]="ctaPhone.href">📞 {{ ctaPhone.value }}</a>
+        <a class="btn btn--primary" [href]="ctaEmail().href">✉️ {{ ctaEmail().value }}</a>
+        <a class="btn btn--ghost" [href]="ctaPhone().href">📞 {{ ctaPhone().value }}</a>
         <a
           class="btn btn--ghost"
-          [href]="ctaWhatsapp.href"
+          [href]="ctaWhatsapp().href"
           target="_blank"
-          rel="noopener noreferrer">💬 WhatsApp</a>
+          rel="noopener noreferrer">{{ t().cta.whatsapp }}</a>
       </div>
     </div>
   </section>
@@ -411,10 +450,10 @@
 
 <footer class="footer">
   <div class="shell footer__inner">
-    <p>© {{ currentYear }} {{ profile.name }} · Costruito con Angular &amp; SCSS</p>
+    <p>© {{ currentYear }} {{ t().profile.name }} · {{ t().footer.builtWith }}</p>
     <p class="footer__host">
       <span class="pulse" aria-hidden="true"></span>
-      Running on GCP Compute Engine
+      {{ t().footer.host }}
     </p>
   </div>
 </footer>
