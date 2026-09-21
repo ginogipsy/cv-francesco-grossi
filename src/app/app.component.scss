@@ -53,8 +53,10 @@
     min-height: 68px;
   }
 
+  /* Nessun margin-left: auto qui — lo spazio libero lo assorbe .lang-switch,
+     che precede la CTA. Due auto nello stesso flex se lo dividerebbero, e il
+     selettore finirebbe a meta' barra invece che accanto al bottone. */
   &__cta {
-    margin-left: auto;
     padding: 9px 18px;
     background: var(--accent-soft);
     border: 1px solid rgb(66 133 244 / 45%);
@@ -161,6 +163,51 @@
       &::after {
         transform: scaleX(1);
       }
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Selettore lingua (segmented control ITA / ENG)
+   -------------------------------------------------------------------------- */
+
+/* Spinge se stesso e la CTA a destra: e' l'unico `margin-left: auto` della
+   topbar, quindi assorbe da solo tutto lo spazio libero. */
+.lang-switch {
+  display: inline-flex;
+  flex: none;
+  gap: 2px;
+  margin-left: auto;
+  padding: 3px;
+  background: rgb(255 255 255 / 4%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+
+  &__btn {
+    padding: 5px 12px;
+    background: none;
+    border: 0;
+    border-radius: var(--radius-pill);
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition:
+      color 0.2s ease,
+      background 0.2s ease;
+
+    &:hover {
+      color: var(--text);
+    }
+
+    /* Lo stato attivo non e' affidato al solo colore: il contrasto con la
+       pillola di sfondo resta leggibile anche in scala di grigi. */
+    &.is-active {
+      background: var(--accent-soft);
+      box-shadow: inset 0 0 0 1px rgb(66 133 244 / 45%);
+      color: #cfe0ff;
     }
   }
 }
@@ -860,6 +907,60 @@
     margin-top: 7px;
     color: var(--text-dim);
     font-size: 0.85rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Lingue parlate (terza colonna di .edu)
+   -------------------------------------------------------------------------- */
+
+/* Eredita tutto da .edu__card: qui si aggiungono solo la riga di intestazione
+   e l'accento verde della madrelingua. */
+.lang-card {
+  &--native {
+    border-left-color: var(--g-green);
+  }
+
+  &__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__flag {
+    font-size: 1.3rem;
+    line-height: 1;
+  }
+
+  &__name {
+    font-size: 1.02rem;
+    font-weight: 700;
+  }
+
+  &__level {
+    margin-left: auto;
+    background: rgb(66 133 244 / 12%);
+    border: 1px solid rgb(66 133 244 / 40%);
+    color: #cfe0ff;
+  }
+
+  &--native &__level {
+    background: rgb(52 168 83 / 14%);
+    border-color: rgb(52 168 83 / 45%);
+    color: #9fd5b4;
+  }
+
+  &__abilities {
+    margin-top: 10px;
+  }
+
+  /* Il livello CEFR e' il dato che si cerca a colpo d'occhio: staccato dal
+     nome dell'abilita' con peso e colore, non solo con uno spazio. */
+  &__cefr {
+    margin-left: 6px;
+    color: var(--text);
+    font-weight: 700;
   }
 }
 
