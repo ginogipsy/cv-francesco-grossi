@@ -5,11 +5,24 @@
 > Un tag pushato con il `GITHUB_TOKEN` di default non fa partire altri workflow
 > (è una protezione anti-loop di GitHub Actions). Siccome `release.yml` crea il
 > tag da solo, senza un token dedicato `deploy.yml` non parte.
-> 1. Crea un PAT (**Settings** → **Developer settings** → **Personal access tokens**) con scope `repo`.
+> 1. Crea un **fine-grained PAT**: **Settings** → **Developer settings** →
+>    **Personal access tokens** → **Fine-grained tokens** → **Generate new token**.
+>    - *Resource owner*: il proprietario del repo — *Repository access*: solo `cv-francesco-grossi`
+>    - *Repository permissions* → **Contents: Read and write** (unico permesso necessario:
+>      al token serve solo pushare il tag e il commit di bump)
+>    - Con un PAT classico basta lo scope `public_repo`: il repo è pubblico e
+>      `repo` darebbe scrittura su tutti i repository dell'account.
 > 2. Salvalo nel repo come secret **`RELEASE_TOKEN`** (**Settings** → **Secrets and variables** → **Actions**).
 >
 > Senza il secret la release viene creata comunque, ma il deploy va lanciato a
 > mano: **Actions** → *Deploy image* → **Run workflow**, selezionando il tag.
+
+> [!WARNING]
+> Il fallback `secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN` in `release.yml`
+> non rompe nulla se il secret manca — ma **alla scadenza del PAT il deploy
+> smette di partire senza segnalare errori**: `release.yml` continua a taggare
+> regolarmente. Annota la data di scadenza, oppure passa a un token di GitHub
+> App (`actions/create-github-app-token`), che non scade.
 
 ## Workflow
 
