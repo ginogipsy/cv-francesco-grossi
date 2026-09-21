@@ -1,5 +1,7 @@
 name: CI/CD
 
+# Niente trigger sui tag: sul tag gira deploy.yml, che ricostruisce comunque
+# l'app dentro la build Docker. Farla girare anche qui sarebbe lavoro doppio.
 on:
   push:
     branches:
@@ -7,8 +9,6 @@ on:
       - develop
       - 'release/**'
       - 'hotfix/**'
-    tags:
-      - 'v*'
   pull_request:
     branches:
       - master
@@ -22,8 +22,6 @@ jobs:
   build-test:
     name: Build & Test
     runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.package.outputs.version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -46,17 +44,3 @@ jobs:
 
       - name: Build
         run: npm run build -- --configuration production
-
-  deploy:
-    name: Deploy
-    needs: build-test
-    if: github.event_name == 'push'
-    permissions:
-      contents: write
-      packages: write
-      actions: read
-    uses: ./.github/workflows/deploy.yml
-    with:
-      version: ${{ needs.build-test.outputs.version }}
-      ref_name: ${{ github.ref_name }}
-      ref_type: ${{ github.ref_type }}

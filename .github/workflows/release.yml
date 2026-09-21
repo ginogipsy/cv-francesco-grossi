@@ -20,10 +20,17 @@ jobs:
       pull-requests: read
 
     steps:
+      # Un tag pushato con il GITHUB_TOKEN di default NON fa partire altri
+      # workflow: deploy.yml resterebbe fermo. Con RELEASE_TOKEN (PAT con scope
+      # `repo`, salvato nei secrets) il push del tag e' attribuito a un utente e
+      # deploy.yml parte da solo. Senza il secret l'espressione ricade sul
+      # token di default: la release viene creata lo stesso, ma il deploy va
+      # lanciato a mano (workflow_dispatch di deploy.yml dal tag).
       - name: Checkout master
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Determine Version
         id: versioning
